@@ -15,6 +15,9 @@ import ContactForm from "./ContactUs";
 
 import Footer from "../COMPONENTS/Footer";
 import ProducerAccount from "./ProducerAccount";
+import CategoryPage from "./CategoryPage";
+import ProducerPage from "./ProducersPage";
+import CartPage from "./CartPage";
 
 export default function RouterPage() {
   return (
@@ -48,6 +51,25 @@ export default function RouterPage() {
           <Route exact path="/üreticiHesabı">
             <ProducerAccount />
           </Route>
+
+          <Route exact path="/Üreticiler">
+            <ProducerPage/>
+          </Route>
+
+          <Route exact path="/Sepet">
+            <CartPage />
+          </Route>
+          
+          <Route exact path="/Meyve">
+            <CategoryPage category={2} />
+          </Route>
+          <Route exact path="/Sebze">
+            <CategoryPage category={3}/>
+          </Route>
+          <Route exact path="/Kuruyemiş">
+            <CategoryPage category={4}/>
+          </Route>
+
           
           <Route exact path="/deneme">
             <UploadButtons/>

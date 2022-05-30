@@ -166,7 +166,7 @@ function ProducerAccount() {
         <div>
           <Box sx={{ minWidth: 120, minHeight: 100 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">İlçe</InputLabel>
+              <InputLabel id="demo-simple-select-label">Kategori</InputLabel>
               <Select
                 labelId="title-select"
                 id="title-select"
