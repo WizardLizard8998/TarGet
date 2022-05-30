@@ -1,14 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 
-/*
+
 :root {
   --light: #d0d1d3;
   --dark: #fefefe;
   --green: #21ce99;
 }
-*/
 
+
+.contact-form{
+  display: flex;
+  align-content: center;
+  
+  
+}
+
+
+.abc{
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .body {
   font-family: Poppins;
@@ -77,6 +92,7 @@
 
 .submit-btn {
   background-color: var(--dark);
+  align-items: center;
   color: var(--green) !important;
   padding: 15px 50px;
   border: 2px solid var(--green);

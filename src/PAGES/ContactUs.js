@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material';
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -5,6 +6,9 @@ import { ToastContainer, toast } from 'react-toastify';
 //import emailjs from 'emailjs-com';
 import 'react-toastify/dist/ReactToastify.min.css';
 import '../Styles/ContactUs.css';
+import { Button } from '@mui/material';
+
+
 
 const ContactForm = () => {
   const {
@@ -64,8 +68,53 @@ const ContactForm = () => {
     }
   };
 
+
+  const onClick = () =>{
+    setAb(5)
+    console.log(ab)
+  }
+  const [ab,setAb] = useState();
+
   return (
-    <div className='ContactForm'>
+    <>
+    <div className='abc'>
+    <TextField
+          id="standard-basic"
+          value={ab}
+          onChange={(event) => {
+            setAb(event.target.value);
+          }}
+          label="Birim/kg Fiyat"
+        />
+        <TextField
+          id="standard-basic"
+          value={ab}
+          onChange={(event) => {
+            setAb(event.target.value);
+          }}
+          label="Birim/kg Fiyat"
+        />
+        <TextField
+          id="standard-basic"
+          value={ab}
+          onChange={(event) => {
+            setAb(event.target.value);
+          }}
+          label="Birim/kg Fiyat"
+        />
+        <TextField
+          id="standard-basic"
+          value={ab}
+          onChange={(event) => {
+            setAb(event.target.value);
+          }}
+          label="Birim/kg Fiyat"
+        />
+         <Button variant="outlined" onClick={onClick}>
+              Kayıt Ol!
+            </Button>
+</div>
+    <div className='contactform'>
       <div className='container'>
         <div className='row'>
           <div className='col-12 text-center'>
@@ -160,6 +209,7 @@ const ContactForm = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

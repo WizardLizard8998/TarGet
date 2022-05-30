@@ -18,6 +18,8 @@ import ProducerAccount from "./ProducerAccount";
 import CategoryPage from "./CategoryPage";
 import ProducerPage from "./ProducersPage";
 import CartPage from "./CartPage";
+import Blog from "./Blog";
+
 
 export default function RouterPage() {
   return (
@@ -70,6 +72,9 @@ export default function RouterPage() {
             <CategoryPage category={4}/>
           </Route>
 
+          <Route exact path="/Blog">
+            <Blog />
+          </Route>
           
           <Route exact path="/deneme">
             <UploadButtons/>

@@ -41,24 +41,28 @@ the main difference is this component is not here to display any data but shows 
 
 function TextGrid(props) {
   const classes = useStyles();
-  const { text0, text1, text2, text3, text4, img } = props;
+  const { Id, Name, Desc,  Image, unitp , totalw } = props;
+
+
+
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation={0}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm container>
-            <img className={classes.img} src={img} />
+            <img className={classes.img} src={Image} />
 
             <Grid item xs className={classes.typo}>
               <Typography gutterBottom variant="subtitle1">
-                {text0}
+                {Name}
               </Typography>
               <Typography gutterBottom variant="subtitle1">
-                {text1}
+                {Desc}
               </Typography>
-              <Typography variant="body2">{text2}</Typography>
-              <Typography variant="body2">{text3}</Typography>
-              <Typography variant="body2">{text4}</Typography>
+              <Typography variant="body2">{unitp}</Typography>
+              <Typography variant="body2">{totalw}</Typography>
+              
             </Grid>
           </Grid>
         </Grid>
@@ -72,10 +76,15 @@ function CategoryPage(props) {
   const [cat, setCat] = useState("");
   const [data, setData] = useState([]);
 
+
   useEffect(
     () => {
 
-      if(category == 4){ setCat("Kuruyemiş")}
+      
+      if(category == 4){ 
+        setCat("Kuruyemiş")
+
+      }
       if(category == 3){  setCat("Sebze")}
       if(category == 2){ setCat("Meyve")}
 
@@ -95,16 +104,19 @@ function CategoryPage(props) {
   return (
     <>
     <div className="layout1-flex">
-      <h1>{category}</h1>
-      <h1>{cat}</h1>
+      
+      <h1> Kategoriler , {cat}  </h1>
       <div className="flex-row-wrapped">
         {data && data.map((info,index) => 
           <TextGrid
             key={index}
-            text0={info.pt_Name}
-            text1={info.pt_Description}
-            img={info.pt_Image}
-            
+            Id = {info.pt_Id}
+            Name= {info.pt_Name}
+            Desc= {info.pt_Description}
+            Image= {info.pt_Image}
+            unitp= {info.pt_UnitPrice} 
+            totalw= {info.pt_TotalWeight} 
+
           />
         )}
       </div>
