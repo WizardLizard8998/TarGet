@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../Styles/layout1.css';
 import {useState, useEffect } from "react"; 
 import { makeStyles } from '@material-ui/core';
@@ -11,11 +11,12 @@ import slide2 from '../DATA/IMAGES/Domates.jpg';
 import slide3 from '../DATA/IMAGES/Hıyar.jpg';
 import Slider from './Slider/Slider';
 import { data } from '../DATA/data.jsx';
-
+import {Button} from  "@mui/material";
 import { Typography } from '@material-ui/core';
 import axios from 'axios';
 
 import {ReactSession} from "react-client-session";
+import { AccountContext } from '../DATA/AccountProvider';
 
 ReactSession.setStoreType("localStorage")
 
@@ -24,6 +25,7 @@ ReactSession.setStoreType("localStorage")
  function TextGrid(props) {
 
     const [producer,setProducer] = useState([])
+    const [pName,setpName] =useState("")
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -53,24 +55,54 @@ ReactSession.setStoreType("localStorage")
       
       }));
 
-
-
     const classes = useStyles();
     const { ptname, ptdesc, ptunitp, ptunitw, text4 ,img,
-         ptidü, pid
-        
+         ptid, pid     
     } = props;
 
-    useEffect(() => {
 
+    useEffect( async () => {
+
+      /*
         axios
         .get(`https://localhost:44326/TarGet/Producers/${pid}`)
         .then(resp => {setProducer(resp.data)
-            console.log(producer)})
-        .then(data => setProducer(data))
+            console.log(producer)
+          })
+        .then(data => {
+          setProducer(data)
+          console.log(producer)
+          producer.map((d,k) => {
+            setpName(d.p_Name)
+            console.log(d)
+            console.log(pName)
+          })
+        })
+          */
+
+
+
+          const data = await fetch(`https://localhost:44326/TarGet/Producers/${pid}`) 
+          .then(resp => resp.json())
+          .then(data => {
+            console.log(data)
+            setpName(data.p_Name)
+          })
+          .catch(err => console.log(err));
+
+
+
+
+
+
     },[pid])
 
     
+
+    const onClick = () => {
+      alert("kero")
+
+    } 
 
     return (
       <div className="flex-row-wrapped">
@@ -80,21 +112,22 @@ ReactSession.setStoreType("localStorage")
               <img className={classes.img} src={img} />
               
               <Grid item xs className={classes.typo}>
-                <Typography gutterBottom  variant="subtitle1">
-                  {ptname}
+                <Typography gutterBottom  variant="title">
+                  Ürün ismi : {ptname}
                 </Typography>
                 <Typography gutterBottom variant="subtitle1">
-                  {ptdesc}
+                  Ürün Açıklaması: {ptdesc}
                 </Typography>
                 <Typography variant="body2" >
-                  {}
+                  Birim Ağırlığı: {ptunitw}
                 </Typography>
                 <Typography variant="body2">
-                  {ptunitp}
+                  Birim Fiyatı: {ptunitp}
                 </Typography>
                 <Typography variant="body2">
-                  {"Çiftlik"}
+                  Üretici : {pName}
                 </Typography>
+                <Button onClick={onClick}>sepete ekle</Button>
               </Grid>
             </Grid>
           </Grid>
@@ -106,15 +139,26 @@ ReactSession.setStoreType("localStorage")
 
 
 function MainPage() {
-
-    // functions that may included will be written here
+  
+  // functions that may included will be written here
 
     const [data,setData] = useState([]);
 
-    useEffect(() => {
+    const {UID } = useContext(AccountContext);
+
+    useEffect( async () => {
         axios
         .get("https://localhost:44326/TarGet/Products")
         .then(resp => setData(resp.data))
+
+        await fetch(`https://localhost:44326/ComplexCart/${UID}`) 
+        .then(resp => resp.json())
+        .then(data => {
+          console.log(data)
+         ReactSession.set("cartId",data.ct_Id)
+        })
+        .catch(err => console.log(err));
+
 
     },[])
     
@@ -130,16 +174,10 @@ function MainPage() {
 
     const classes = useStyles();
     return (
-
         <>
             <div class="layout1-flex">
-
-                
-
                 <div class="flex-row">
-
-                    <Slider/>
-                    
+                    <Slider/>    
                </div>
                 <div className={classes.root} >
                     <Typography>Bu haftanın ürünleri</Typography>
@@ -151,24 +189,17 @@ function MainPage() {
                             ptname={data.pt_Name}
                             ptdesc={data.pt_Description}
                             ptunitp={data.pt_UnitPrice}
-                            //pt={data.c_Id}
+                            ptunitw={data.pt_UnitWeight}
                             pid={data.p_Id}
+                            ptid={data.pt_Id}
                         />
 
                     )}
 
                 </div>
-
-
-
-
-            </div >
-
+            </div>
         </>
-
     );
-
-
 }
 
 

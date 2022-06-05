@@ -54,14 +54,14 @@ function TextGrid(props) {
             <img className={classes.img} src={Image} />
 
             <Grid item xs className={classes.typo}>
-              <Typography gutterBottom variant="subtitle1">
+              <Typography gutterBottom variant="title">
                 {Name}
               </Typography>
               <Typography gutterBottom variant="subtitle1">
-                {Desc}
+                Ürün Açıklaması : {Desc}
               </Typography>
-              <Typography variant="body2">{unitp}</Typography>
-              <Typography variant="body2">{totalw}</Typography>
+              <Typography variant="body2">Birim fiyat: {unitp}</Typography>
+              <Typography variant="body2">Toplam Ağırlık: {totalw}</Typography>
               
             </Grid>
           </Grid>

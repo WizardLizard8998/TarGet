@@ -10,18 +10,14 @@ function AccountProvider(props) {
   const [Title, setTitle] = useState("");
   const [UID, setUID] = useState();
 
-  const [Name,setName] =useState("");
-  const [Adress,setAdress] = useState("");
-  const [Did,setDid]= useState("");
-  const [pCode,setpCode] = useState("");
-  const [Phone,setPhone] = useState("");
+  const [Name, setName] = useState("");
+  const [Adress, setAdress] = useState("");
+  const [Did, setDid] = useState("");
+  const [pCode, setpCode] = useState("");
+  const [Phone, setPhone] = useState("");
 
-
-  const [DescLName,setDLN] = useState("");
-  const [Image,setImage] = useState([]);
-  
-  
-
+  const [DescLName, setDLN] = useState("");
+  const [Image, setImage] = useState([]);
 
   return (
     <AccountContext.Provider
@@ -37,13 +33,14 @@ function AccountProvider(props) {
         pCode: pCode,
         Phone: Phone,
 
-        DescLName:DescLName,
+        DescLName: DescLName,
         Image: Image,
 
         setMail,
         setPassword,
         setTitle,
         setUID,
+
         setName,
         setAdress,
         setDid,
@@ -51,7 +48,6 @@ function AccountProvider(props) {
         setPhone,
         setDLN,
         setImage,
-        
       }}
     >
       {props.children}
@@ -59,4 +55,4 @@ function AccountProvider(props) {
   );
 }
 
-export {AccountContext, AccountProvider};
+export { AccountContext, AccountProvider };
