@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 //ürün ekleme
 
-function ProducerAccount() {
+function Account() {
   const classes = useStyles();
 
   const { UID, Title } = useContext(AccountContext);
@@ -229,4 +229,4 @@ function ProducerAccount() {
   );
 }
 
-export default ProducerAccount;
+export default Account;

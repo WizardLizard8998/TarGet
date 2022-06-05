@@ -15,7 +15,9 @@ import { data } from '../DATA/data.jsx';
 import { Typography } from '@material-ui/core';
 import axios from 'axios';
 
+import {ReactSession} from "react-client-session";
 
+ReactSession.setStoreType("localStorage")
 
 
 
@@ -91,7 +93,7 @@ import axios from 'axios';
                   {ptunitp}
                 </Typography>
                 <Typography variant="body2">
-                  {"hebelehübele"}
+                  {"Çiftlik"}
                 </Typography>
               </Grid>
             </Grid>

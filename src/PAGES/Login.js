@@ -12,6 +12,8 @@ import axios from "axios";
 import { data } from "../DATA/data";
 import { useHistory } from "react-router-dom";
 
+import {ReactSession} from "react-client-session";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -66,7 +68,8 @@ function Login() {
     };
 
     useEffect(() => {
-      
+
+        ReactSession.set("UID",data.uA_Id)
         setTitle(data.uA_Title)
         setUID(data.uA_Id)
     },[][data])

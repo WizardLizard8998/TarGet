@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -24,6 +24,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { AccountContext } from "../DATA/AccountProvider";
+import {ReactSession} from "react-client-session";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -103,14 +104,19 @@ export default function TAppBar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   let history = useHistory();
 
-  const {Mail,Title,Password,UID} = useContext(AccountContext);
+  const {Mail,Title,Password,UID,setUID} = useContext(AccountContext);
+  
+  setUID(ReactSession.get("UID"))
+  const [GC,setGC] = useState("");
 
   useEffect(() => {
-    if(Mail != null ){
+    if(UID == undefined ) { setGC("Giriş")}
+    if(UID != undefined ) {setGC("Çıkış")}
 
-    }
-  },[Mail])
-  
+  })
+
+
+
   //navbar functions
 
   const [state, setState] = React.useState({
@@ -162,7 +168,7 @@ export default function TAppBar() {
       </List>
       <Divider/>
         <List>
-          {["Giriş", 'Kayıt'].map((text) => (
+          {[GC, 'Kayıt'].map((text) => (
             <ListItem button key={text} onClick={() => history.push(`/${text}`)}>
               <ListItemText primary={text}/>
             </ListItem>
@@ -200,7 +206,7 @@ export default function TAppBar() {
     }
 
     if(Title == "Customer"){
-      history.push("/kullanıcıHesabı");
+      history.push("/Sepet");
     }
 
 
@@ -243,7 +249,7 @@ export default function TAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <p>{Mail}</p>
+      <p>{UID}</p>
       <MenuItem onClick={ProfileClick}>Profil</MenuItem>
       <MenuItem onClick={AccountClick}>Hesabım</MenuItem>
     </Menu>
@@ -274,6 +280,7 @@ export default function TAppBar() {
     </Menu>
   );
 
+  console.log(UID , ReactSession.get("UID"))
   return (
     <div className={classes.grow}>
       <AppBar position="static" color="transparents">

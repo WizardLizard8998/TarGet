@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProducerProfile(props) {
+function Profile(props) {
   const {
     Mail,
     Password,
@@ -367,7 +367,7 @@ function ProducerProfile(props) {
   );
 }
 
-export default ProducerProfile;
+export default Profile;
 
 
 /*
