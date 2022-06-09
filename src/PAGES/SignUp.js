@@ -30,9 +30,8 @@ function SignUp(props) {
 
   const [Pwdcheck, setPwdcheck] = React.useState("");
 
-  const { Mail, Password, Title, setMail, setPassword, setTitle } = useContext(
-    AccountContext
-  );
+  const { Mail, Password, Title, setMail, setPassword, setTitle } =
+    useContext(AccountContext);
 
   const history = useHistory();
 
@@ -59,17 +58,14 @@ function SignUp(props) {
         .catch((e) => {
           alert(e);
         });
-    
 
-    if (Title == "Producer") {
-      history.push("/");
+      if (Title == "Producer") {
+        history.push("/");
+      }
+      if (Title == "Customer") {
+        history.push("/deneme");
+      }
     }
-    if (Title == "Customer") {
-      history.push("/deneme");
-    }
-
-   }
-   
   };
 
   const handleChange = (event) => {

@@ -104,16 +104,26 @@ export default function TAppBar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   let history = useHistory();
 
-  const {Mail,Title,Password,UID,setUID} = useContext(AccountContext);
+  const {Mail,Title,Password,UID,setUID,setTitle,setMail} = useContext(AccountContext);
   
-  setUID(ReactSession.get("UID"))
+  
   const [GC,setGC] = useState("");
-
+  const [Hesabım,setHesabım] = useState();
+  
   useEffect(() => {
+    setUID(ReactSession.get("UID"))
+    setTitle(ReactSession.get("Title"))
+    setMail(ReactSession.get("Mail"))
     if(UID == undefined ) { setGC("Giriş")}
     if(UID != undefined ) {setGC("Çıkış")}
 
-  })
+    if(Title == "Producer") {setHesabım("Hesabım")}
+
+    if(Title == "Producer") {setHesabım("Sepetim")}
+
+    if(Title == undefined || Title == " ") {setHesabım("Giriş")}
+
+  },[UID])
 
 
 
@@ -197,7 +207,7 @@ export default function TAppBar() {
 
   const AccountClick = () => {
 
-    if(Title == "" || Title== " "){
+    if(Title == "" || Title== " " || Title == undefined){
       history.push("/Giriş");
     }
 
@@ -249,9 +259,9 @@ export default function TAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <p>{UID}</p>
+      <p>{Mail}</p>
       <MenuItem onClick={ProfileClick}>Profil</MenuItem>
-      <MenuItem onClick={AccountClick}>Hesabım</MenuItem>
+      <MenuItem onClick={AccountClick}>{Hesabım}</MenuItem>
     </Menu>
   );
 

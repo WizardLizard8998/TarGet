@@ -6,37 +6,32 @@
   margin: 5%;
 }
 
-.profile-edit{
-  
+.profile-edit {
   margin: 5%;
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   row-gap: 20px;
   justify-content: center;
 
   width: 30%;
 }
 
-.profile-form{ 
+.profile-form {
   display: flex;
   flex-direction: row;
-
 }
 
-.account-edit{
-
-
+.account-edit {
   margin: 5%;
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   row-gap: 20px;
   justify-content: center;
 
   width: 30%;
 }
 
-
-.add-product{
+.add-product {
   display: flex;
   margin: 5%;
   flex-direction: column;
@@ -44,6 +39,4 @@
   width: 500px;
 
   row-gap: 20px;
-  
-
 }

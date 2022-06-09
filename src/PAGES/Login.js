@@ -12,7 +12,7 @@ import axios from "axios";
 import { data } from "../DATA/data";
 import { useHistory } from "react-router-dom";
 
-import {ReactSession} from "react-client-session";
+import { ReactSession } from "react-client-session";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,55 +25,61 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classes = useStyles();
-  const {
-    Mail,
-    setMail,
-    Password,
-    setPassword,
-    UID,
-    setUID,
-    Title,
-    setTitle,
-  } = useContext(AccountContext);
+  const { Mail, setMail, Password, setPassword, UID, setUID, Title, setTitle } =
+    useContext(AccountContext);
 
   const [data, setData] = useState([]);
-  const history=useHistory();
+  const history = useHistory();
 
+  const onClick = async () => {
+    // iki kere tıkladığında gönderiyor
+    //muhtemelen useEffect ile alakalı
+    //buraya göz atacan
 
-  const onClick = () =>  {
-      // iki kere tıkladığında gönderiyor 
-      //muhtemelen useEffect ile alakalı 
-      //buraya göz atacan
-    axios
+    await axios
+      .get(`https://localhost:44326/ComplexLogin/${Mail}/${Password}`)
+      .then((resp) => {
+        console.log(resp.data);
+      });
+
+    await axios
       .get(`https://localhost:44326/TarGet/UserAcc/${Mail}/${Password}`)
       .then((response) => {
         console.log(response.data);
         console.log(response.status);
-        
-          setData(response.data);
-         
-          if(response.data.uA_Title =="Producer"){
-            history.push("/üreticiProfil");
-  
-          }
-  
-          if(response.data.uA_Title=="Customer"){
-            history.push("/");
-          }
-        
+
+        setData(response.data);
+
+        if (response.data.uA_Title == "Producer") {
+          history.push("/üreticiProfil");
+        }
+
+        if (response.data.uA_Title == "Customer") {
+          history.push("/");
+
+          fetch(`https://localhost:44326/ComplexCart/${response.data.uA_Id}`)
+            .then((resp) => resp.json())
+            .then((data) => {
+              console.log(data);
+              ReactSession.set("cartId", data.ct_Id);
+            })
+            .catch((err) => console.log(err));
+        }
       })
       .catch((e) => {
         console.log(e);
       });
-    };
+  };
 
-    useEffect(() => {
+  useEffect(() => {
+    ReactSession.set("UID", data.uA_Id);
+    ReactSession.set("Mail", data.uA_Email);
+    ReactSession.set("Title", data.uA_Title);
 
-        ReactSession.set("UID",data.uA_Id)
-        setTitle(data.uA_Title)
-        setUID(data.uA_Id)
-    },[][data])
-  
+    setTitle(data.uA_Title);
+    setUID(data.uA_Id);
+  }, [][data]);
+
   return (
     <>
       <div className="login-register-box">

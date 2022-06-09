@@ -1,35 +1,33 @@
-import { TextField } from '@mui/material';
-import React from 'react';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
+import { TextField } from "@mui/material";
+import React from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 //import emailjs from 'emailjs-com';
-import 'react-toastify/dist/ReactToastify.min.css';
-import '../Styles/ContactUs.css';
-import { Button } from '@mui/material';
-
-
+import "react-toastify/dist/ReactToastify.min.css";
+import "../Styles/ContactUs.css";
+import { Button } from "@mui/material";
 
 const ContactForm = () => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
   const [disabled, setDisabled] = useState(false);
 
   // Function that displays a success toast on bottom right of the page when form submission is successful
   const toastifySuccess = () => {
-    toast('Form sent!', {
-      position: 'bottom-right',
+    toast("Form sent!", {
+      position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: false,
-      className: 'submit-feedback success',
-      toastId: 'notifyToast'
+      className: "submit-feedback success",
+      toastId: "notifyToast",
     });
   };
 
@@ -46,7 +44,7 @@ const ContactForm = () => {
         name,
         email,
         subject,
-        message
+        message,
       };
 
       // Use emailjs to email contact form data
@@ -68,24 +66,15 @@ const ContactForm = () => {
     }
   };
 
-
-  const onClick = () =>{
-    setAb(5)
-    console.log(ab)
-  }
-  const [ab,setAb] = useState();
+  const onClick = () => {
+    setAb(5);
+    console.log(ab);
+  };
+  const [ab, setAb] = useState();
 
   return (
     <>
-    <div className='abc'>
-    <TextField
-          id="standard-basic"
-          value={ab}
-          onChange={(event) => {
-            setAb(event.target.value);
-          }}
-          label="Birim/kg Fiyat"
-        />
+      <div className="abc">
         <TextField
           id="standard-basic"
           value={ab}
@@ -110,105 +99,133 @@ const ContactForm = () => {
           }}
           label="Birim/kg Fiyat"
         />
-         <Button variant="outlined" onClick={onClick}>
-              Kayıt Ol!
-            </Button>
-</div>
-    <div className='contactform'>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-12 text-center'>
-            <div className='contactForm'>
-            <h1 className='text-center'>TarGet Contact Us</h1>
-              <form id='contact-form' onSubmit={handleSubmit(onSubmit)} noValidate>
-                {/* Row 1 of form */}
-                <div className='row formRow'>
-                  <div className='col-6'>
-                    <input
-                      type='text'
-                      name='name'
-                      {...register('name', {
-                        required: {
-                          value: true,
-                          message: 'Please enter your name'
-                        },
-                        maxLength: {
-                          value: 30,
-                          message: 'Please use 30 characters or less'
-                        }
-                      })}
-                      className='form-control formInput'
-                      placeholder='Name'
-                    ></input>
-                    {errors.name && <span className='errorMessage'>{errors.name.message}</span>}
+        <TextField
+          id="standard-basic"
+          value={ab}
+          onChange={(event) => {
+            setAb(event.target.value);
+          }}
+          label="Birim/kg Fiyat"
+        />
+        <Button variant="outlined" onClick={onClick}>
+          Kayıt Ol!
+        </Button>
+      </div>
+      <div className="contactform">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+              <div className="contactForm">
+                <h1 className="text-center">TarGet Contact Us</h1>
+                <form
+                  id="contact-form"
+                  onSubmit={handleSubmit(onSubmit)}
+                  noValidate
+                >
+                  {/* Row 1 of form */}
+                  <div className="row formRow">
+                    <div className="col-6">
+                      <input
+                        type="text"
+                        name="name"
+                        {...register("name", {
+                          required: {
+                            value: true,
+                            message: "Please enter your name",
+                          },
+                          maxLength: {
+                            value: 30,
+                            message: "Please use 30 characters or less",
+                          },
+                        })}
+                        className="form-control formInput"
+                        placeholder="Name"
+                      ></input>
+                      {errors.name && (
+                        <span className="errorMessage">
+                          {errors.name.message}
+                        </span>
+                      )}
+                    </div>
+                    <div className="col-6">
+                      <input
+                        type="email"
+                        name="email"
+                        {...register("email", {
+                          required: true,
+                          pattern:
+                            /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                        })}
+                        className="form-control formInput"
+                        placeholder="Email address"
+                      ></input>
+                      {errors.email && (
+                        <span className="errorMessage">
+                          Please enter a valid email address
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  <div className='col-6'>
-                    <input
-                      type='email'
-                      name='email'
-                      {...register('email', {
-                        required: true,
-                        pattern:
-                          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-                      })}
-                      className='form-control formInput'
-                      placeholder='Email address'
-                    ></input>
-                    {errors.email && (
-                      <span className='errorMessage'>Please enter a valid email address</span>
-                    )}
+                  {/* Row 2 of form */}
+                  <div className="row formRow">
+                    <div className="col">
+                      <input
+                        type="text"
+                        name="subject"
+                        {...register("subject", {
+                          required: {
+                            value: true,
+                            message: "Please enter a subject",
+                          },
+                          maxLength: {
+                            value: 75,
+                            message: "Subject cannot exceed 75 characters",
+                          },
+                        })}
+                        className="form-control formInput"
+                        placeholder="Subject"
+                      ></input>
+                      {errors.subject && (
+                        <span className="errorMessage">
+                          {errors.subject.message}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                </div>
-                {/* Row 2 of form */}
-                <div className='row formRow'>
-                  <div className='col'>
-                    <input
-                      type='text'
-                      name='subject'
-                      {...register('subject', {
-                        required: {
-                          value: true,
-                          message: 'Please enter a subject'
-                        },
-                        maxLength: {
-                          value: 75,
-                          message: 'Subject cannot exceed 75 characters'
-                        }
-                      })}
-                      className='form-control formInput'
-                      placeholder='Subject'
-                    ></input>
-                    {errors.subject && (
-                      <span className='errorMessage'>{errors.subject.message}</span>
-                    )}
+                  {/* Row 3 of form */}
+                  <div className="row formRow">
+                    <div className="col">
+                      <textarea
+                        rows={3}
+                        name="message"
+                        {...register("message", {
+                          required: true,
+                        })}
+                        className="form-control formInput"
+                        placeholder="Message"
+                      ></textarea>
+                      {errors.message && (
+                        <span className="errorMessage">
+                          Please enter a message
+                        </span>
+                      )}
+                    </div>
                   </div>
-                </div>
-                {/* Row 3 of form */}
-                <div className='row formRow'>
-                  <div className='col'>
-                    <textarea
-                      rows={3}
-                      name='message'
-                      {...register('message', {
-                        required: true
-                      })}
-                      className='form-control formInput'
-                      placeholder='Message'
-                    ></textarea>
-                    {errors.message && <span className='errorMessage'>Please enter a message</span>}
-                  </div>
-                </div>
 
-                <button className='submit-btn' disabled={disabled} type='submit'>
-                  Submit
-                </button>
-              </form>
+                  <button
+                    className="submit-btn"
+                    disabled={disabled}
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </form>
+              </div>
+              <ToastContainer />
             </div>
-            <ToastContainer />
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

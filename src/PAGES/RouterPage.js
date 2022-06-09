@@ -21,21 +21,20 @@ import CartPage from "./CartPage";
 import Blog from "./Blog";
 import LogOut from "./LogOut";
 
-
 export default function RouterPage() {
   return (
     <Router>
       <div>
-      <TAppBar/>
-       
+        <TAppBar />
+
         <Switch>
           <Route exact path="/">
             <MainPage />
-          </Route> 
+          </Route>
           <Route exact path="/Anasayfa">
             <MainPage />
           </Route>
-          
+
           <Route exact path="/Kayıt">
             <SignUp />
           </Route>
@@ -45,7 +44,6 @@ export default function RouterPage() {
           <Route exact path="/Çıkış">
             <LogOut />
           </Route>
-          
 
           <Route exact path="/BizeUlaşın">
             <ContactUs />
@@ -54,7 +52,7 @@ export default function RouterPage() {
             <Profile />
           </Route>
           <Route exact path="/bizeUlaşın">
-            <ContactForm/>
+            <ContactForm />
           </Route>
           <Route exact path="/üreticiHesabı">
             <Account />
@@ -62,43 +60,38 @@ export default function RouterPage() {
           <Route exact path="/kullanıcıProfil">
             <Profile />
           </Route>
-          
 
           <Route exact path="/Üreticiler">
-            <ProducerPage/>
+            <ProducerPage />
           </Route>
 
           <Route exact path="/Sepet">
             <CartPage />
           </Route>
-          
+
           <Route exact path="/Meyve">
             <CategoryPage category={2} />
           </Route>
           <Route exact path="/Sebze">
-            <CategoryPage category={3}/>
+            <CategoryPage category={3} />
           </Route>
           <Route exact path="/Kuruyemiş">
-            <CategoryPage category={4}/>
+            <CategoryPage category={4} />
           </Route>
 
           <Route exact path="/Blog">
             <Blog />
           </Route>
-          
-          <Route exact path="/deneme">
-            <UploadButtons/>
-          </Route>
 
+          <Route exact path="/deneme">
+            <UploadButtons />
+          </Route>
         </Switch>
 
-      
-        <Footer/>
-
+        <Footer />
       </div>
     </Router>
   );
 }
-
 
 //<Footer/>

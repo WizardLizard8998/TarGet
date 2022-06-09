@@ -5,29 +5,49 @@ import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-
-
 function Footer(props) {
+  const history = useHistory();
+  const Pages = ["Anasayfa", "Üreticiler", "Meyveler", "Sebzeler"];
 
-    const history = useHistory();
-    const Pages= ["Anasayfa","Üreticiler","Meyveler","Sebzeler"]
-    
-
-    return (
+  return (
     <>
       <div class="footer">
         <div>
-        <h3>Merhaba !</h3>
-          <h5><li><Link to="/Anasayfa"> Anasayfa </Link></li></h5>
-          <h5><li><Link to="/Üreticiler"> Üreticiler </Link></li></h5>
-          <h5><li><Link to="/Meyve"> Meyve</Link></li></h5>
-          <h5><li><Link to="/Sebze"> Sebze </Link></li></h5>
+          <h3>Merhaba !</h3>
+          <h5>
+            <li>
+              <Link to="/Anasayfa"> Anasayfa </Link>
+            </li>
+          </h5>
+          <h5>
+            <li>
+              <Link to="/Üreticiler"> Üreticiler </Link>
+            </li>
+          </h5>
+          <h5>
+            <li>
+              <Link to="/Meyve"> Meyve</Link>
+            </li>
+          </h5>
+          <h5>
+            <li>
+              <Link to="/Sebze"> Sebze </Link>
+            </li>
+          </h5>
         </div>
 
         <div>
           <h3>Merhaba !</h3>
-          <h5><li><Link to="/BizeUlaşın"> Bize Ulaşın </Link></li></h5>
-          <h5><li><Link to="/Hakkımızda"> Hakkımızda </Link></li></h5>
+          <h5>
+            <li>
+              <Link to="/BizeUlaşın"> Bize Ulaşın </Link>
+            </li>
+          </h5>
+          <h5>
+            <li>
+              <Link to="/Hakkımızda"> Hakkımızda </Link>
+            </li>
+          </h5>
         </div>
 
         <div>
@@ -39,7 +59,6 @@ function Footer(props) {
 }
 
 export default Footer;
-
 
 /*
               <Typography  onClick={Click}  variant="h5" >Anasayfa</Typography>

@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 :root {
   --light: #d0d1d3;
@@ -8,16 +6,12 @@
   --green: #21ce99;
 }
 
-
-.contact-form{
+.contact-form {
   display: flex;
   align-content: center;
-  
-  
 }
 
-
-.abc{
+.abc {
   display: flex;
   align-content: center;
   flex-wrap: wrap;

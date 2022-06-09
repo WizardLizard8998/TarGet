@@ -41,10 +41,7 @@ the main difference is this component is not here to display any data but shows 
 
 function TextGrid(props) {
   const classes = useStyles();
-  const { Id, Name, Desc,  Image, unitp , totalw } = props;
-
-
-
+  const { Id, Name, Desc, Image, unitp, totalw } = props;
 
   return (
     <div className={classes.root}>
@@ -62,7 +59,6 @@ function TextGrid(props) {
               </Typography>
               <Typography variant="body2">Birim fiyat: {unitp}</Typography>
               <Typography variant="body2">Toplam Ağırlık: {totalw}</Typography>
-              
             </Grid>
           </Grid>
         </Grid>
@@ -76,50 +72,44 @@ function CategoryPage(props) {
   const [cat, setCat] = useState("");
   const [data, setData] = useState([]);
 
+  useEffect(() => {
+    if (category == 4) {
+      setCat("Kuruyemiş");
+    }
+    if (category == 3) {
+      setCat("Sebze");
+    }
+    if (category == 2) {
+      setCat("Meyve");
+    }
 
-  useEffect(
-    () => {
-
-      
-      if(category == 4){ 
-        setCat("Kuruyemiş")
-
-      }
-      if(category == 3){  setCat("Sebze")}
-      if(category == 2){ setCat("Meyve")}
-
-
-      axios
-        .get(`https://localhost:44326/TarGet/Products/Category/${category}`)
-        .then(
-          (resp) => setData(resp.data),
-          (err) => console.log(err)
-        )
-        .catch((e) => console.log(e));
-    },
-    [props],
-    
-  );
+    axios
+      .get(`https://localhost:44326/TarGet/Products/Category/${category}`)
+      .then(
+        (resp) => setData(resp.data),
+        (err) => console.log(err)
+      )
+      .catch((e) => console.log(e));
+  }, [props]);
 
   return (
     <>
-    <div className="layout1-flex">
-      
-      <h1> Kategoriler , {cat}  </h1>
-      <div className="flex-row-wrapped">
-        {data && data.map((info,index) => 
-          <TextGrid
-            key={index}
-            Id = {info.pt_Id}
-            Name= {info.pt_Name}
-            Desc= {info.pt_Description}
-            Image= {info.pt_Image}
-            unitp= {info.pt_UnitPrice} 
-            totalw= {info.pt_TotalWeight} 
-
-          />
-        )}
-      </div>
+      <div className="layout1-flex">
+        <h1> Kategoriler , {cat} </h1>
+        <div className="flex-row-wrapped">
+          {data &&
+            data.map((info, index) => (
+              <TextGrid
+                key={index}
+                Id={info.pt_Id}
+                Name={info.pt_Name}
+                Desc={info.pt_Description}
+                Image={info.pt_Image}
+                unitp={info.pt_UnitPrice}
+                totalw={info.pt_TotalWeight}
+              />
+            ))}
+        </div>
       </div>
     </>
   );

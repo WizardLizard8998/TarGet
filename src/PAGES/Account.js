@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "../Styles/Style.css";
 import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
@@ -6,8 +6,7 @@ import Button from "@material-ui/core/Button";
 import { AccountContext } from "../DATA/AccountProvider";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core";
-import { Box , FormControl,InputLabel,Select,MenuItem} from "@mui/material"; 
-
+import { Box, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,24 +36,21 @@ function Account() {
   const [PId, setPId] = useState();
   const [CId, setCId] = useState();
 
-  const [categories,setCategories] = useState();
-
+  const [categories, setCategories] = useState();
 
   useEffect(() => {
-    
-  axios
-  .get(`https://localhost:44326/TarGet/Category`)
-  .then(resp => setCategories(resp.data))  
-    
     axios
-    .get(`https://localhost:44326/UserAcc/${UID}`)
-    .then((resp) => {
-      setPId(resp.data.p_Id);
-      console.log(PId);
-    })
-    .catch((e) => console.log(e));
-  
-  }, [])
+      .get(`https://localhost:44326/TarGet/Category`)
+      .then((resp) => setCategories(resp.data));
+
+    axios
+      .get(`https://localhost:44326/UserAcc/${UID}`)
+      .then((resp) => {
+        setPId(resp.data.p_Id);
+        console.log(PId);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
   let product = {
     Pt_Name: Name,
@@ -68,10 +64,9 @@ function Account() {
     C_Id: CId,
   };
 
-
   const handleChange2 = (event) => {
-    setCId(event.target.value)
-  }
+    setCId(event.target.value);
+  };
 
   const AddProduct = () => {
     axios

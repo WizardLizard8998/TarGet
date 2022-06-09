@@ -1,4 +1,3 @@
-
 import First from "../../DATA/IMAGES/Hıyar.jpg";
 import Second from "../../DATA/IMAGES/Domates.jpg";
 import Third from "../../DATA/IMAGES/Biber.jpg";
@@ -19,5 +18,4 @@ export default [
     description: "Bu biberler çok ateşli ",
     urls: Third,
   },
- 
 ];

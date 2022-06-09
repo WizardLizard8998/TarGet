@@ -5,7 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AccountProvider } from "./DATA/AccountProvider";
 
-
 ReactDOM.render(
   <React.StrictMode>
     <AccountProvider>
