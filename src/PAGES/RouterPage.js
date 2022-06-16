@@ -20,6 +20,7 @@ import ProducerPage from "./ProducersPage";
 import CartPage from "./CartPage";
 import Blog from "./Blog";
 import LogOut from "./LogOut";
+import Hakkımızda from "./Hakkımızda";
 
 export default function RouterPage() {
   return (
@@ -34,7 +35,11 @@ export default function RouterPage() {
           <Route exact path="/Anasayfa">
             <MainPage />
           </Route>
-
+          
+          <Route exact path="/Hakkımızda">
+            <Hakkımızda />
+          </Route>
+          
           <Route exact path="/Kayıt">
             <SignUp />
           </Route>
