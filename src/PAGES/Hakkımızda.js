@@ -1,5 +1,5 @@
 import "../Styles/Hakkımızda.css"
-import target from "../DATA/IMAGES/Biber.jpg";
+import target from "../DATA/IMAGES/target.png";
 
 import React, { Component } from 'react'
 

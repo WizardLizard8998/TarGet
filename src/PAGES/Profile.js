@@ -245,8 +245,8 @@ function Profile(props) {
             >
               Resim yükle
             </Button>
-            <Button>Gönder </Button>
-            <Button>Göster </Button>
+            
+            
           </label>
           <TextField
             id="standard-basic"

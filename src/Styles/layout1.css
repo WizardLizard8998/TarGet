@@ -26,6 +26,11 @@
   justify-content: center;
 }
 
+.button-öde{
+  width: 50%;
+  height: 40%;
+}
+
 .flex-row-wrapped {
   display: flex;
   flex-direction: row;

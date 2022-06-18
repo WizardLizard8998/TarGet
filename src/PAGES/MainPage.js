@@ -89,7 +89,7 @@ function TextGrid(props) {
 
   const onClick = async () => {
     let post = {
-      pt_ID: pid,
+      pt_ID: ptid,
       ct_Id: ReactSession.get("cartId"),
       cD_Quantity: ptunitw,
       cD_TotalPrice: ptunitw,
